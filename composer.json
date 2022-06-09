@@ -1,0 +1,57 @@
+{
+    "name": "cryocaustik/seat-hr",
+    "description": "Human Resources plugin for SeAT",
+    "keywords": [
+        "cryocaustik",
+        "seat-hr"
+    ],
+    "version": "1.0.0",
+    "minimum-stability": "dev",
+
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "cryocaustik",
+            "email": "alex@alazy.dev",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.3",
+        "yajra/laravel-datatables-buttons": "^4.0",
+        "yajra/laravel-datatables-oracle": "^9.10"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cryocaustik\\SeatHr\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cryocaustik\\SeatHr\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cryocaustik\\SeatHr\\SeatHrServiceProvider"
+            ],
+            "aliases": {
+                "SeatHr": "Cryocaustik\\SeatHr\\SeatHrFacade"
+            }
+        }
+    }
+}
