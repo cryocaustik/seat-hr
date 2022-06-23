@@ -1,11 +1,11 @@
 @extends('seat-hr::review.layouts.view', [ 'viewname' => 'summary' ])
 
-@section('page_header', trans('seat-hr::review.title') . ': ' . trans('seat-hr::hr.summary'))
+@section('page_header', trans('seat-hr::review.title') . ': ' . trans('seat-hr::review.summary.title'))
 
 @section('review_content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">{{ trans('seat-hr::review.summary') }}</h3>
+            <h3 class="card-title">{{ trans('seat-hr::review.summary.sub-title') }}</h3>
         </div>
         <div class="card-body">
             Coming soon :TM:

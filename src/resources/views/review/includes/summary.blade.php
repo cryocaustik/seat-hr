@@ -32,22 +32,22 @@
 
         <dl>
             @if($corporation->corporation->alliance_id)
-                <dt>{{ trans('seat-hr::hr.alliance') }}</dt>
+                <dt>{{ trans('seat-hr::review.alliance') }}</dt>
                 <dd><span class="id-to-name" data-id="{{ $corporation->corporation->alliance_id }}">{{ trans('seat-hr::hr.unknown') }}</span></dd>
             @endif
 
-            <dt>{{ trans('seat-hr::hr.ticker') }}</dt>
+            <dt>{{ trans('seat-hr::review.corp.ticker') }}</dt>
             <dd>{{ $corporation->corporation->ticker }}</dd>
 
-            <dt>{{ trans('seat-hr::hr.url') }}</dt>
+            <dt>{{ trans('seat-hr::review.corp.url') }}</dt>
             <dd>
                 <a href="{{ $corporation->url }}" target="_blank">{{ $corporation->corporation->url }}</a>
             </dd>
 
-            <dt>{{ trans('seat-hr::hr.tax_rate') }}</dt>
+            <dt>{{ trans('seat-hr::review.corp.tax_rate') }}</dt>
             <dd>{{ number_format($corporation->tax_rate * 100) }}%</dd>
 
-            <dt>{{ trans('seat-hr::hr.member_count') }}</dt>
+            <dt>{{ trans('seat-hr::review.corp.member_count') }}</dt>
             <dd>
                 @if(!is_null($corporation->memberLimit) && $corporation->corporation->memberLimit > 0)
                     {{ $corporation->corporation->member_count }} / {{ $corporation->corporation->memberLimit }}
@@ -56,7 +56,7 @@
                 @endif
             </dd>
 
-            <dt>{{ trans('seat-hr::hr.members_registered') }}</dt>
+            <dt>{{ trans('seat-hr::review.corp.members_registered') }}</dt>
             <dd>
                 {{ $corporation->corporation->characters->count() }} / {{ $corporation->corporation->member_count }}
             </dd>

@@ -1,11 +1,11 @@
 @extends('seat-hr::review.layouts.view', [ 'viewname' => 'applications' ])
 
-@section('page_header', trans('seat-hr::review.title') . ': ' . trans('seat-hr::hr.applications'))
+@section('page_header', trans('seat-hr::review.title') . ': ' . trans('seat-hr::review.applications.title'))
 
 @section('review_content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">{{ trans('seat-hr::review.applications') }}</h3>
+            <h3 class="card-title">{{ trans('seat-hr::review.applications.sub-title') }}</h3>
         </div>
         <div class="card-body">
             {{ $dataTable->table() }}
