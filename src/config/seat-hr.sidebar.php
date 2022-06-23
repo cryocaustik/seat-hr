@@ -25,7 +25,7 @@ return [
                 'label' => 'Setup',
                 'icon' => 'fas fa-cog',
                 'plural' => true,
-                'route' => 'seat-hr.config',
+                'route' => 'seat-hr.config.corp.view',
                 'permission' => 'seat-hr.admin',
                 'entries' => [
                     [

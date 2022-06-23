@@ -52,9 +52,6 @@ Route::group([
                 'middleware' => 'can:character.sheet,character',
             ]);
 
-            Route::bind('application', function ($value) {
-                return \Cryocaustik\SeatHr\models\SeatHrApplication::view()->findOrFail($value);
-            });
             Route::get('/view/{application?}', [
                 'uses' => 'ApplicationController@view',
                 'as' => 'seat-hr.profile.applications.view',
@@ -154,9 +151,6 @@ Route::group([
         Route::group([
             'prefix' => '/{corporation}',
         ], function(){
-            Route::bind('corporation', function ($value) {
-                return \Cryocaustik\SeatHr\models\SeatHrCorporation::with('corporation')->findOrFail($value);
-            });
 
             Route::get('/summary', [
                 'uses' => 'ReviewController@summary',
@@ -206,11 +200,6 @@ Route::group([
         'prefix' => 'config',
         'middleware' => 'can:seat-hr.admin',
     ], function () {
-
-        Route::get('/', [
-            'uses' => function () { redirect('seat-hr.config.corp.view'); },
-            'as' => 'seat-hr.config',
-        ]);
 
         Route::group([
             'prefix' => 'corp',
