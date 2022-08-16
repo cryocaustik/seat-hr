@@ -35,7 +35,7 @@ class ApplicationController extends Controller
             // because validator will literally reindex and overwrite your object keys if you use integers!!!
             $question_ids = array_map(
                 function($v) { return 'id-' . $v; },
-                $available_questions->pluck('id')->toArray()
+                $available_questions->pluck('question_id')->toArray()
             );
 
             $data = $request->only($question_ids);
@@ -43,7 +43,7 @@ class ApplicationController extends Controller
             $attributes = [];
 
             foreach($available_questions as $q) {
-                $id = 'id-'. $q->id;
+                $id = 'id-'. $q->question_id;
                 $type = $q->question->type;
 
                 // validator does not have rules for type text

@@ -20,36 +20,36 @@
                         @foreach($corp_questions as $corp_q)
                             @if(in_array($corp_q->question->type, ['string', 'number']))
                                 <div class="form-group">
-                                    <label for="{{ $corp_q->id }}">{{ $corp_q->question->name }}</label>
-                                    <input type="{{ $corp_q->question->type }}" name="id-{{ $corp_q->id }}"
-                                           id="{{ $corp_q->id }}" class="form-control">
+                                    <label for="{{ $corp_q->question_id }}">{{ $corp_q->question->name }}</label>
+                                    <input type="{{ $corp_q->question->type }}" name="id-{{ $corp_q->question_id }}"
+                                           id="{{ $corp_q->question_id }}" class="form-control">
                                 </div>
                             @elseif($corp_q->question->type == 'boolean')
                                 <div class="form-group form-check">
-                                    <input type="hidden" value="0" name="id-{{ $corp_q->id }}" class="form-check-input">
-                                    <input type="checkbox" value="1" name="id-{{ $corp_q->id }}"
-                                           id="{{ $corp_q->id }}" class="form-check-input">
-                                    <label for="{{ $corp_q->id }}" class="form-check-label">
+                                    <input type="hidden" value="0" name="id-{{ $corp_q->question_id }}" class="form-check-input">
+                                    <input type="checkbox" value="1" name="id-{{ $corp_q->question_id }}"
+                                           id="{{ $corp_q->question_id }}" class="form-check-input">
+                                    <label for="{{ $corp_q->question_id }}" class="form-check-label">
                                         {{ $corp_q->question->name }}
                                     </label>
                                 </div>
                             @elseif($corp_q->question->type == 'text')
                                 <div class="form-group">
-                                    <label for="{{ $corp_q->id }}">{{ $corp_q->question->name }}</label>
-                                    <textarea name="id-{{ $corp_q->id }}" id="{{ $corp_q->id }}" class="form-control"></textarea>
+                                    <label for="{{ $corp_q->question_id }}">{{ $corp_q->question->name }}</label>
+                                    <textarea name="id-{{ $corp_q->question_id }}" id="{{ $corp_q->question_id }}" class="form-control"></textarea>
                                 </div>
                             @elseif($corp_q->question->type == 'date')
                                 <div class="form-group">
-                                    <label for="{{ $corp_q->id }}">{{ $corp_q->question->name }}</label>
-                                    <input type="date" name="id-{{ $corp_q->id }}" id="{{ $corp_q->id }}" class="form-control">
+                                    <label for="{{ $corp_q->question_id }}">{{ $corp_q->question->name }}</label>
+                                    <input type="date" name="id-{{ $corp_q->question_id }}" id="{{ $corp_q->question_id }}" class="form-control">
                                 </div>
                             @elseif($corp_q->question->type == 'datetime')
                                 <div class="form-group">
-                                    <label for="{{ $corp_q->id }}">{{ $corp_q->question->name }}</label>
-                                    <input type="datetime-local" name="id-{{ $corp_q->id }}" id="{{ $corp_q->id }}" class="form-control">
+                                    <label for="{{ $corp_q->question_id }}">{{ $corp_q->question->name }}</label>
+                                    <input type="datetime-local" name="id-{{ $corp_q->question_id }}" id="{{ $corp_q->question_id }}" class="form-control">
                                 </div>
                             @else
-                                <label for="{{ $corp_q->id }}">{{ $corp_q->question->name }}</label>
+                                <label for="{{ $corp_q->question_id }}">{{ $corp_q->question->name }}</label>
                                 <span class="text-danger">unknown question type</span>
                             @endif
                         @endforeach
