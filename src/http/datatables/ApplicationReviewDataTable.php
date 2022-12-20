@@ -6,6 +6,7 @@ use Cryocaustik\SeatHr\models\SeatHrApplication;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Facades\Log;
 
 class ApplicationReviewDataTable extends DataTable
 {
@@ -19,31 +20,35 @@ class ApplicationReviewDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('corporation_id', function ($row) {
-                return $row->corporation->corporation->name;
-            })
-            ->editColumn('profile_id', function ($row) {
-                return $row->profile->user->name;
-            })
             ->editColumn('can_reapply', function ($row) {
                 return view('seat-hr::review.partials.reapply', compact('row'));
             })
-            ->editColumn('status', function ($row) {
+            ->editColumn('currentStatus.status.name', function ($row) {
                 $status = $row->currentStatus;
                 return view('seat-hr::review.partials.status', compact('status'));
             })
-            ->editColumn('status_by', function ($row) {
+            ->editColumn('currentStatus.assigner.name', function ($row) {
                 return $row->currentStatus->assignerName;
+//                return $row->currentStatus->assigner ? $row->currentStatus->assigner->name : '';
             })
             ->addColumn('action', function ($row) {
                 return view('seat-hr::review.partials.application-actions', compact('row'))->render();
-            })
-            ;
+            });
     }
 
     public function query(SeatHrApplication $model)
     {
-        return $model->with(['corporation', 'currentStatus', 'profile'])->where('corporation_id', $this->id);
+        return $model->with([
+            'corporation',
+            'corporation.corporation',
+            'currentStatus',
+            'currentStatus.status',
+            'currentStatus.assigner',
+            'profile',
+            'profile.user',
+        ])
+            ->corporationView($this->id)
+            ->select('seat_hr_applications.*');
     }
 
     public function html()
@@ -52,8 +57,7 @@ class ApplicationReviewDataTable extends DataTable
             ->setTableId('applications-review-datatable-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->orderBy(1)
-            ;
+            ->orderBy(0);
     }
 
     /**
@@ -64,16 +68,18 @@ class ApplicationReviewDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id'),
-            Column::make('profile_id')->title('Profile'),
-            Column::make('corporation_id')->title('Corporation'),
-            Column::make('status'),
-            Column::make('status_by'),
-            Column::make('can_reapply')->title('Cat Reapply?'),
-            Column::make('created_at')->title('Submitted At'),
+            ['data' => 'id', 'title' => 'App ID'],
+            ['data' => 'profile.user.name', 'title' => 'Profile'],
+            ['data' => 'corporation.corporation.name', 'title' => 'Corporation', 'sortable' => false],
+            ['data' => 'currentStatus.status.name', 'title' => 'Status', 'sortable' => false],
+            ['data' => 'currentStatus.assigner.name', 'title' => 'Status By'],
+            ['data' => 'can_reapply', 'title' => 'Can Reapply?'],
+            ['data' => 'created_at', 'title' => 'Submitted At'],
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
+                ->sortable(false)
+                ->searchable(false)
                 ->width(60)
                 ->addClass('text-center'),
         ];

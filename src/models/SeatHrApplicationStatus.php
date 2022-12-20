@@ -16,19 +16,19 @@ class SeatHrApplicationStatus extends Model
         return $this->belongsTo(SeatHrStatus::class, 'status_id');
     }
 
-    public function asignee()
+    public function assignee()
     {
         return $this->belongsTo(User::class, 'assigned_to', 'id');
     }
 
-    public function asigner()
+    public function assigner()
     {
-        return $this->belongsTo(User::class, 'assigned_to', 'id');
+        return $this->belongsTo(User::class, 'assigned_by', 'id');
     }
 
     public function decider()
     {
-        return $this->belongsTo(User::class, 'assigned_to', 'id');
+        return $this->belongsTo(User::class, 'assigned_by', 'id');
     }
 
     public function getNameAttribute()
@@ -43,17 +43,17 @@ class SeatHrApplicationStatus extends Model
 
     public function getAssignedToNameAttribute()
     {
-        return $this->asignee->name;
+        return $this->assignee->name;
     }
 
     public function getAssignerNameAttribute()
     {
-        return $this->asignee ? $this->asignee->name : '';
+        return $this->assigner ? $this->assigner->name : '';
     }
 
     public function getDeciderNameAttribute()
     {
-        return $this->asignee->name;
+        return $this->assigner->name;
     }
 
     public function scopeCurrentStatus($query)
