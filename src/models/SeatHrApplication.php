@@ -51,6 +51,11 @@ class SeatHrApplication extends Model
         return $this->hasMany(SeatHrAnswer::class, 'application_id', 'id')->with('question');
     }
 
+    public function scopeCorporationView($query, $corporation_id)
+    {
+        return $query->where('corporation_id', $corporation_id);
+    }
+
     public function scopeView($query)
     {
         return $query->with(['answers:id,application_id,question_id,response', 'answers.question:id,name,type', 'status']);
