@@ -61,7 +61,7 @@ composer dumpautoload
 
 ### Security
 
-If you discover any security related issues, please email alex.skobelev@pm.me instead of using the issue tracker.
+If you discover any security related issues, please email seat-hr@alazy.dev instead of using the issue tracker.
 
 ## Credits
 
