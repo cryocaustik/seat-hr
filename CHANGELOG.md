@@ -15,3 +15,9 @@ All notable changes to `seat-hr` will be documented in this file
 ## 1.0.2 - 2022-08-15
 
 - fix question id fk violation #3
+
+## 1.0.3 - 2022-12-19
+
+- fix #7 causing errors when attempting to search/sort
+- #5 add seat-hr entry to character menu
+  - added SeAT Profile button to HR Profile
