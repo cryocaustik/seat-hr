@@ -37,4 +37,10 @@ return [
         'highlight_view' => 'sheet',
         'route' => 'seat-hr.profile.sheet',
     ],
+    [
+        'name'           => 'SeAT Profile',
+        'permission'     => 'character.sheet',
+        'highlight_view' => 'SeAT Profile',
+        'route'          => 'character.view.sheet',
+    ],
 ];
