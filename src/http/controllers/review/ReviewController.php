@@ -106,4 +106,10 @@ class ReviewController extends \Seat\Web\Http\Controllers\Controller
 
         return redirect()->back()->with('success', 'Application re-apply toggled.');
     }
+
+    public function application_delete(SeatHrCorporation $corporation, SeatHrApplication $application)
+    {
+        $application->delete();
+        return redirect()->back()->with('success', 'Application deleted.');
+    }
 }

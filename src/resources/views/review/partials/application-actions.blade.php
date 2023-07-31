@@ -44,4 +44,15 @@
     >
         <i class="fas fa-window-close"></i>
     </a>
+    
+    <a href="{{ route('seat-hr.review.application.delete', [
+        'corporation' => $row->corporation_id,
+        'application' => $row->id,
+    ]) }}" class="btn btn-sm btn-danger"
+       data-toggle="tooltip" data-placement="bottom" title="Delete Application"
+       onclick="return confirm('This will permenantly delete the application and answers.\n\nAre you sure you want to delete this application?')"
+    >
+        <i class="fas fa-trash"></i>
+    </a>
+
 </div>

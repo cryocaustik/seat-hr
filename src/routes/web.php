@@ -180,6 +180,11 @@ Route::group([
                     'as' => 'seat-hr.review.application.cancel',
                 ]);
 
+                Route::match(['get', 'post'], '/delete', [
+                    'uses' => 'ReviewController@application_delete',
+                    'as' => 'seat-hr.review.application.delete',
+                ]);
+
                 Route::match(['get', 'post'], '/reject', [
                     'uses' => 'ReviewController@application_reject',
                     'as' => 'seat-hr.review.application.reject',
