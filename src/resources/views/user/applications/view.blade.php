@@ -1,6 +1,6 @@
 @extends('seat-hr::user.layouts.view', [ 'viewname' => 'applications' ])
 
-@section('page_header', trans('seat-hr::user.title') . ': ' . trans('seat-hr::hr.user.applications.view'))
+@section('page_header', trans('seat-hr::user.title') . ': ' . trans('seat-hr::user.applications.view'))
 
 @section('profile_content')
     <div class="card">
