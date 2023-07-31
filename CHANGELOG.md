@@ -21,3 +21,9 @@ All notable changes to `seat-hr` will be documented in this file
 - fix #7 causing errors when attempting to search/sort
 - #5 add seat-hr entry to character menu
   - added SeAT Profile button to HR Profile
+
+## 1.0.4 - 2023-07-30
+
+- fix #10 to allow question deletion
+- add warning to top level question deletion
+- new feature to allow application deletion
