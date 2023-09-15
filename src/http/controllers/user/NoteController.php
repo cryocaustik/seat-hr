@@ -39,7 +39,7 @@ class NoteController extends \Seat\Web\Http\Controllers\Controller
 
             SeatHrNote::create($data);
 
-            return redirect()->route('seat-hr.profile.note', compact('character'))
+            return redirect()->route('seat-hr.profile.note', ['character' => $character])
                 ->with('success', 'User note created successfully.');
         }
 
@@ -67,7 +67,7 @@ class NoteController extends \Seat\Web\Http\Controllers\Controller
             return view('seat-hr::user.note.index')->with('success', 'User note has been updated successfully.');
 
         }
-        return view('seat-hr::user.note.edit', compact('note'));
+        return view('seat-hr::user.note.edit', ['note' => $note]);
     }
 
     public function delete(CharacterInfo $character, SeatHrNote $note)

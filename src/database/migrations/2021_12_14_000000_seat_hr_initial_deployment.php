@@ -11,9 +11,9 @@ class SeatHrInitialDeployment extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('seat_hr_profiles', function (Blueprint $table) {
+        Schema::create('seat_hr_profiles', function (Blueprint $table): void {
             $table->bigIncrements('id');
 
             $table->unsignedInteger('user_id');
@@ -27,7 +27,7 @@ class SeatHrInitialDeployment extends Migration
             $table->timestamps();
         });
 
-        Schema::create('seat_hr_corporations', function (Blueprint $table) {
+        Schema::create('seat_hr_corporations', function (Blueprint $table): void {
             $table->bigIncrements('id');
 
             $table->bigInteger('corporation_id');
@@ -43,7 +43,7 @@ class SeatHrInitialDeployment extends Migration
             $table->timestamps();
         });
 
-        Schema::create('seat_hr_applications', function (Blueprint $table) {
+        Schema::create('seat_hr_applications', function (Blueprint $table): void {
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('corporation_id');
@@ -63,7 +63,7 @@ class SeatHrInitialDeployment extends Migration
             $table->timestamps();
         });
 
-        Schema::create('seat_hr_statuses', function (Blueprint $table) {
+        Schema::create('seat_hr_statuses', function (Blueprint $table): void {
             $table->bigIncrements('id');
 
             $table->string('name');
@@ -74,10 +74,10 @@ class SeatHrInitialDeployment extends Migration
         });
 
         \Illuminate\Support\Facades\Artisan::call('db:seed', [
-            '--class' => '\Cryocaustik\SeatHr\database\seeders\SeatHrStatusSeeder',
+            '--class' => '\\' . \Cryocaustik\SeatHr\database\seeders\SeatHrStatusSeeder::class,
         ]);
 
-        Schema::create('seat_hr_application_statuses', function (Blueprint $table) {
+        Schema::create('seat_hr_application_statuses', function (Blueprint $table): void {
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('application_id');
@@ -109,7 +109,7 @@ class SeatHrInitialDeployment extends Migration
             $table->timestamps();
         });
 
-        Schema::create('seat_hr_questions', function (Blueprint $table) {
+        Schema::create('seat_hr_questions', function (Blueprint $table): void {
             $table->bigIncrements('id');
 
             $table->string('name');
@@ -119,7 +119,7 @@ class SeatHrInitialDeployment extends Migration
             $table->timestamps();
         });
 
-        Schema::create('seat_hr_corporation_questions', function (Blueprint $table) {
+        Schema::create('seat_hr_corporation_questions', function (Blueprint $table): void {
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('corporation_id');
@@ -139,7 +139,7 @@ class SeatHrInitialDeployment extends Migration
             $table->timestamps();
         });
 
-        Schema::create('seat_hr_answers', function (Blueprint $table) {
+        Schema::create('seat_hr_answers', function (Blueprint $table): void {
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('application_id');
@@ -159,7 +159,7 @@ class SeatHrInitialDeployment extends Migration
             $table->timestamps();
         });
 
-        Schema::create('seat_hr_notes', function (Blueprint $table) {
+        Schema::create('seat_hr_notes', function (Blueprint $table): void {
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('profile_id');
@@ -180,7 +180,7 @@ class SeatHrInitialDeployment extends Migration
             $table->timestamps();
         });
 
-        Schema::create('seat_hr_blacklists', function (Blueprint $table) {
+        Schema::create('seat_hr_blacklists', function (Blueprint $table): void {
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('profile_id');
@@ -202,7 +202,7 @@ class SeatHrInitialDeployment extends Migration
             $table->timestamps();
         });
 
-        Schema::create('seat_hr_kick_histories', function (Blueprint $table) {
+        Schema::create('seat_hr_kick_histories', function (Blueprint $table): void {
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('profile_id');
@@ -230,7 +230,7 @@ class SeatHrInitialDeployment extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('seat_hr_blacklists');
         Schema::dropIfExists('seat_hr_kick_histories');

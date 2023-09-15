@@ -15,19 +15,13 @@ class QuestionDataTable extends DataTable
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query)
+    public function dataTable(mixed $query): static
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('type', function ($row) {
-                return ucwords($row->type);
-            })
-            ->editColumn('active', function ($row) {
-                return view('seat-hr::configuration.question.partials.active', compact('row'));
-            })
-            ->addColumn('action', function ($row) {
-                return view('seat-hr::configuration.question.partials.actions', compact('row'))->render();
-            });
+            ->editColumn('type', fn($row): string => ucwords((string) $row->type))
+            ->editColumn('active', fn($row) => view('seat-hr::configuration.question.partials.active', ['row' => $row]))
+            ->addColumn('action', fn($row) => view('seat-hr::configuration.question.partials.actions', ['row' => $row])->render());
     }
 
     /**
@@ -65,7 +59,7 @@ class QuestionDataTable extends DataTable
      *
      * @return array
      */
-    protected function getColumns()
+    protected function getColumns(): array
     {
         return [
             Column::make('id'),
@@ -85,7 +79,7 @@ class QuestionDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'Question_' . date('YmdHis');
     }

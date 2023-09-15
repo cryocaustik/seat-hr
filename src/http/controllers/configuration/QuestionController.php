@@ -74,7 +74,7 @@ class QuestionController extends Controller
             return redirect()->route('seat-hr.config.question.view')->with('success', 'Question updated.');
         }
 
-        return view('seat-hr::configuration.question.edit', compact('question'));
+        return view('seat-hr::configuration.question.edit', ['question' => $question]);
     }
 
     public function delete($id)

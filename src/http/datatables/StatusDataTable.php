@@ -17,7 +17,7 @@ class StatusDataTable extends DataTable
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query)
+    public function dataTable(mixed $query): static
     {
         return datatables()
             ->eloquent($query)
@@ -27,7 +27,6 @@ class StatusDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\StatusDataTable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(StatusDataTable $model)
@@ -62,7 +61,7 @@ class StatusDataTable extends DataTable
      *
      * @return array
      */
-    protected function getColumns()
+    protected function getColumns(): array
     {
         return [
             Column::computed('action')
@@ -82,7 +81,7 @@ class StatusDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'Status_' . date('YmdHis');
     }

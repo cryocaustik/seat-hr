@@ -15,24 +15,20 @@ class CorporationDataTable extends DataTable
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query)
+    public function dataTable(mixed $query): static
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('corporation_id', function ($row) {
-                return $row->corporation->name;
-            })
+            ->editColumn('corporation_id', fn($row) => $row->corporation->name)
             ->editColumn('has_restricted_questions', function ($row) {
                 $bool = $row->has_restricted_questions;
-                return view('seat-hr::configuration.corporation.partials.bool', compact('bool'));
+                return view('seat-hr::configuration.corporation.partials.bool', ['bool' => $bool]);
             })
             ->editColumn('accepting_applications', function ($row) {
                 $bool = $row->accepting_applications;
-                return view('seat-hr::configuration.corporation.partials.bool', compact('bool'));
+                return view('seat-hr::configuration.corporation.partials.bool', ['bool' => $bool]);
             })
-            ->addColumn('action', function ($row) {
-                return view('seat-hr::configuration.corporation.partials.actions', compact('row'))->render();
-            })
+            ->addColumn('action', fn($row) => view('seat-hr::configuration.corporation.partials.actions', ['row' => $row])->render())
             ;
     }
 
@@ -74,7 +70,7 @@ class CorporationDataTable extends DataTable
      *
      * @return array
      */
-    protected function getColumns()
+    protected function getColumns(): array
     {
         return [
             Column::make('corporation_id')->title('Corporation'),
@@ -94,7 +90,7 @@ class CorporationDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'Corporation_' . date('YmdHis');
     }

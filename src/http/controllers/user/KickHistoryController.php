@@ -41,7 +41,7 @@ class KickHistoryController extends \Seat\Web\Http\Controllers\Controller
 
             SeatHrKickHistory::create($data);
 
-            return redirect()->route('seat-hr.profile.kickhistory', compact('character'))
+            return redirect()->route('seat-hr.profile.kickhistory', ['character' => $character])
                 ->with('success', 'User kick history created successfully.');
         }
 
@@ -71,7 +71,7 @@ class KickHistoryController extends \Seat\Web\Http\Controllers\Controller
             return view('seat-hr::user.kickhistory.index')->with('success', 'Kick history record has been updated');
 
         }
-        return view('seat-hr::user.kickhistory.edit', compact('kickhistory'));
+        return view('seat-hr::user.kickhistory.edit', ['kickhistory' => $kickhistory]);
     }
 
     public function delete(CharacterInfo $character, SeatHrKickHistory $kickhistory)

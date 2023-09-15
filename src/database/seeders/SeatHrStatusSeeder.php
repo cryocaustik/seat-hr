@@ -12,7 +12,7 @@ class SeatHrStatusSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         DB::table('seat_hr_statuses')->insert([
             [

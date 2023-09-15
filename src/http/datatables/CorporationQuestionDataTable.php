@@ -15,24 +15,20 @@ class CorporationQuestionDataTable extends DataTable
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query)
+    public function dataTable(mixed $query): static
     {
         return datatables()
             ->eloquent($query)
             ->editColumn('active', function ($row) {
                 $bool = $row->active;
-                return view('seat-hr::configuration.corporation_questions.partials.bool', compact('bool'));
+                return view('seat-hr::configuration.corporation_questions.partials.bool', ['bool' => $bool]);
             })
             ->editColumn('used', function ($row) {
                 $bool = !is_null($row->id);
-                return view('seat-hr::configuration.corporation_questions.partials.bool', compact('bool'));
+                return view('seat-hr::configuration.corporation_questions.partials.bool', ['bool' => $bool]);
             })
-            ->editColumn('question_type', function ($row) {
-                return ucwords($row->question_type);
-            })
-            ->addColumn('action', function ($row) {
-                return view('seat-hr::configuration.corporation_questions.partials.actions', compact('row'));
-            });
+            ->editColumn('question_type', fn($row): string => ucwords((string) $row->question_type))
+            ->addColumn('action', fn($row) => view('seat-hr::configuration.corporation_questions.partials.actions', ['row' => $row]));
     }
 
     /**
@@ -57,7 +53,6 @@ class CorporationQuestionDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param Cryocaustik\SeatHr\models\SeatHrCorporationQuestion $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(SeatHrCorporationQuestion $model)
@@ -70,7 +65,7 @@ class CorporationQuestionDataTable extends DataTable
      *
      * @return array
      */
-    protected function getColumns()
+    protected function getColumns(): array
     {
         return [
             Column::make('question_id')->title('ID')->searchable(false)->hidden(),
@@ -92,7 +87,7 @@ class CorporationQuestionDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'CorporationQuestion_' . date('YmdHis');
     }

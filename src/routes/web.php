@@ -7,7 +7,7 @@ Route::group([
         'web',
         'auth',
     ],
-], function()
+], function(): void
 {
     Route::get('/about', [
         'uses' => 'SeatHrController@about',
@@ -17,7 +17,7 @@ Route::group([
     Route::group([
         'namespace' => 'user',
         'prefix' => 'user',
-    ], function () {
+    ], function (): void {
         Route::get('/{character?}', [
             'uses' => 'UserController@index',
             'as' => 'seat-hr.profile',
@@ -37,7 +37,7 @@ Route::group([
 
         Route::group([
             'prefix' => '/{character}/applications',
-        ], function () {
+        ], function (): void {
 
             // TODO: fix middleware permissions to use seat-hr permissions
             Route::get('/', [
@@ -64,7 +64,7 @@ Route::group([
         Route::group([
             'prefix' => '/{character}/blacklist',
             'middleware' => 'can:seat-hr.officer',
-        ], function (){
+        ], function (): void{
             Route::get('/', [
                 'uses' => 'BlackListController@index',
                 'as' => 'seat-hr.profile.blacklist',
@@ -89,7 +89,7 @@ Route::group([
         Route::group([
             'prefix' => '/{character}/kickhistory',
             'middleware' => 'can:seat-hr.officer',
-        ], function (){
+        ], function (): void{
             Route::get('/', [
                 'uses' => 'KickHistoryController@index',
                 'as' => 'seat-hr.profile.kickhistory',
@@ -114,7 +114,7 @@ Route::group([
         Route::group([
             'prefix' => '/{character}/notes',
             'middleware' => 'can:seat-hr.officer',
-        ], function (){
+        ], function (): void{
             Route::get('/', [
                 'uses' => 'NoteController@index',
                 'as' => 'seat-hr.profile.note',
@@ -142,7 +142,7 @@ Route::group([
         'namespace' => 'review',
         'prefix' => '/review',
         'middleware' => 'can:seat-hr.officer',
-    ], function () {
+    ], function (): void {
         Route::get('/', [
             'uses' => 'ReviewController@index',
             'as' => 'seat-hr.review.index'
@@ -150,7 +150,7 @@ Route::group([
 
         Route::group([
             'prefix' => '/{corporation}',
-        ], function(){
+        ], function(): void{
 
             Route::get('/summary', [
                 'uses' => 'ReviewController@summary',
@@ -164,7 +164,7 @@ Route::group([
 
             Route::group([
                 'prefix' => '/applications/{application}',
-            ], function () {
+            ], function (): void {
                 Route::match(['get', 'post'], '/review', [
                     'uses' => 'ReviewController@application_review',
                     'as' => 'seat-hr.review.application.review',
@@ -204,11 +204,11 @@ Route::group([
         'namespace' => 'configuration',
         'prefix' => 'config',
         'middleware' => 'can:seat-hr.admin',
-    ], function () {
+    ], function (): void {
 
         Route::group([
             'prefix' => 'corp',
-        ], function () {
+        ], function (): void {
 
             Route::get('/', [
                 'uses' => 'CorporationController@view',
@@ -234,7 +234,7 @@ Route::group([
 
         Route::group([
             'prefix' => 'question',
-        ], function () {
+        ], function (): void {
 
             Route::get('/', [
                 'uses' => 'QuestionController@view',
@@ -260,7 +260,7 @@ Route::group([
 
         Route::group([
             'prefix' => 'corporation-question',
-        ], function () {
+        ], function (): void {
             Route::get('/{id}', [
                 'uses' => 'CorporationQuestionController@view',
                 'as' => 'seat-hr.config.corporation-question.view',

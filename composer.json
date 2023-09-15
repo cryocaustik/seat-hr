@@ -17,13 +17,15 @@
         }
     ],
     "require": {
-        "php": "^7.3",
-        "yajra/laravel-datatables-buttons": "^4.0",
-        "yajra/laravel-datatables-oracle": "^9.10"
+        "php": "^8.1",
+        "yajra/laravel-datatables-buttons": "^10.0",
+        "yajra/laravel-datatables-oracle": "^10.8"
     },
     "require-dev": {
-        "orchestra/testbench": "^4.0",
-        "phpunit/phpunit": "^8.0"
+        "driftingly/rector-laravel": "^0.24.1",
+        "orchestra/testbench": "^8.0",
+        "phpunit/phpunit": "^10.0",
+        "rector/rector": "^0.18.3"
     },
     "autoload": {
         "psr-4": {
