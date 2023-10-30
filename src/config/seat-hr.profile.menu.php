@@ -41,6 +41,6 @@ return [
         'name'           => 'SeAT Profile',
         'permission'     => 'character.sheet',
         'highlight_view' => 'SeAT Profile',
-        'route'          => 'character.view.sheet',
+        'route'          => 'seatcore::character.view.sheet',
     ],
 ];
