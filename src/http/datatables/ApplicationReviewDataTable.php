@@ -16,7 +16,7 @@ class ApplicationReviewDataTable extends DataTable
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable(mixed $query): static
+    public function dataTable(mixed $query): \Yajra\DataTables\Contracts\DataTable
     {
         return datatables()
             ->eloquent($query)

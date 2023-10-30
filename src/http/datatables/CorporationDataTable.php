@@ -13,9 +13,9 @@ class CorporationDataTable extends DataTable
      * Build DataTable class.
      *
      * @param mixed $query Results from query() method.
-     * @return \Yajra\DataTables\DataTableAbstract
+     * @return \Yajra\DataTables\Contracts\DataTable
      */
-    public function dataTable(mixed $query): static
+    public function dataTable(mixed $query): \Yajra\DataTables\Contracts\DataTable
     {
         return datatables()
             ->eloquent($query)
