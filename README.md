@@ -9,6 +9,10 @@ Human Resources plugin for [SeAT](https://github.com/eveseat/seat) with Applicat
 
 ![example.png](./example.png)
 
+## SeAT v5
+
+this branch is compatible with SeAT version 5.x - use the master branch for SeAT version 4.x
+
 ## Installation
 
 You can install the package via composer:
