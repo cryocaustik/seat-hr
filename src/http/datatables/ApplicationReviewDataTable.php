@@ -16,24 +16,20 @@ class ApplicationReviewDataTable extends DataTable
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query)
+    public function dataTable(mixed $query): \Yajra\DataTables\Contracts\DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('can_reapply', function ($row) {
-                return view('seat-hr::review.partials.reapply', compact('row'));
-            })
+            ->editColumn('can_reapply', fn($row) => view('seat-hr::review.partials.reapply', ['row' => $row]))
             ->editColumn('currentStatus.status.name', function ($row) {
                 $status = $row->currentStatus;
-                return view('seat-hr::review.partials.status', compact('status'));
+                return view('seat-hr::review.partials.status', ['status' => $status]);
             })
             ->editColumn('currentStatus.assigner.name', function ($row) {
                 return $row->currentStatus->assignerName;
 //                return $row->currentStatus->assigner ? $row->currentStatus->assigner->name : '';
             })
-            ->addColumn('action', function ($row) {
-                return view('seat-hr::review.partials.application-actions', compact('row'))->render();
-            });
+            ->addColumn('action', fn($row) => view('seat-hr::review.partials.application-actions', ['row' => $row])->render());
     }
 
     public function query(SeatHrApplication $model)
@@ -65,7 +61,7 @@ class ApplicationReviewDataTable extends DataTable
      *
      * @return array
      */
-    protected function getColumns()
+    protected function getColumns(): array
     {
         return [
             ['data' => 'id', 'title' => 'App ID'],
@@ -90,7 +86,7 @@ class ApplicationReviewDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'Application_' . date('YmdHis');
     }

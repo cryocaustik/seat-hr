@@ -42,7 +42,7 @@ class BlackListController extends \Seat\Web\Http\Controllers\Controller
 
             SeatHrBlacklist::create($data);
 
-            return redirect()->route('seat-hr.profile.blacklist', compact('character'))
+            return redirect()->route('seat-hr.profile.blacklist', ['character' => $character])
                 ->with('success', 'User has been blacklisted');
         }
 
@@ -72,7 +72,7 @@ class BlackListController extends \Seat\Web\Http\Controllers\Controller
             return view('seat-hr::user.blacklist.index')->with('success', 'Blacklist record has been updated');
 
         }
-        return view('seat-hr::user.blacklist.edit', compact('blacklist'));
+        return view('seat-hr::user.blacklist.edit', ['blacklist' => $blacklist]);
     }
 
     public function delete(CharacterInfo $character, SeatHrBlacklist $blacklist)

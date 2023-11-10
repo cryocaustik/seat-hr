@@ -21,7 +21,7 @@ class Profile
         $this->character = $character;
     }
 
-    public function compose(View $view)
+    public function compose(View $view): void
     {
         $view->with('character', $this->character);
         $view->with('seat_hr_user', User::find($this->character->user->id));

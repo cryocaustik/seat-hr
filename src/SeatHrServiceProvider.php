@@ -11,10 +11,11 @@ use Seat\Services\AbstractSeatPlugin;
 
 class SeatHrServiceProvider extends AbstractSeatPlugin
 {
+    public $app;
     /**
      * Bootstrap the application services.
      */
-    public function boot()
+    public function boot(): void
     {
         /*
          * Optional methods to load your package assets
@@ -30,7 +31,7 @@ class SeatHrServiceProvider extends AbstractSeatPlugin
     /**
      * Register the application services.
      */
-    public function register()
+    public function register(): void
     {
         // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__ . '/config/seat-hr.config.php', 'seat-hr');
@@ -42,9 +43,7 @@ class SeatHrServiceProvider extends AbstractSeatPlugin
 
 
         // Register the main class to use with the facade
-        $this->app->singleton('seat-hr', function () {
-            return new SeatHr;
-        });
+        $this->app->singleton('seat-hr', fn(): \Cryocaustik\SeatHr\SeatHr => new SeatHr);
     }
 
     /**
@@ -98,7 +97,7 @@ class SeatHrServiceProvider extends AbstractSeatPlugin
     /**
      * Loads view composers to reuse data within views
      */
-    private function loadViewComposers()
+    private function loadViewComposers(): void
     {
         $this->app['view']->composer('seat-hr::user.*', Profile::class);
         $this->app['view']->composer('seat-hr::review.*', Review::class);

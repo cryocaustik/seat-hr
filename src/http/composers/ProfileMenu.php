@@ -24,20 +24,18 @@ class ProfileMenu extends AbstractMenu
         ];
     }
 
-    public function compose(View $view)
+    public function compose(View $view): void
     {
         $menu = [];
 
         foreach (config('seat-hr.profile.menu') as $menu_data) {
             $prepared_menu = $this->load_plugin_menu('seat-hr.profile', $menu_data, true);
             if (! is_null($prepared_menu) ){
-                array_push($menu, $prepared_menu);
+                $menu[] = $prepared_menu;
             }
         }
 
-        $menu = array_values(Arr::sort($menu, function ($value) {
-            return $value['name'];
-        }));
+        $menu = array_values(Arr::sort($menu, fn($value) => $value['name']));
 
         $view->with('menu', $menu);
     }
