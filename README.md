@@ -18,9 +18,19 @@ composer require cryocaustik/seat-hr
 ```
 
 
-### Changelog
+## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Entity Relation Diagram
+
+[source](https://dbdocs.io/alexbda969e1ca/seat-hr?view=relationships)
+
+![seat-hr](https://github.com/cryocaustik/seat-hr/assets/15346996/56274166-0585-47af-897e-1802c874f44a)
+
+
+
+
 
 ## Development
 
