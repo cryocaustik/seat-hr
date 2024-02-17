@@ -17,6 +17,10 @@ You can install the package via composer:
 composer require cryocaustik/seat-hr
 ```
 
+## Getting Started
+
+[Documentation on getting started and configuration of the application are available here](./docs/getting_started.md)
+
 
 ## Changelog
 
