@@ -1,5 +1,8 @@
 # SeAT-HR - Human Resources plugin for SeAT
 
+> [!IMPORTANT]
+> SeAT v5 is supported under the [v2.x branch](https://github.com/cryocaustik/seat-hr/tree/v2.x) until v5 sees a stable release. Please follow instructions from that branch for installation.
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/cryocaustik/seat-hr.svg?style=flat-square)](https://packagist.org/packages/cryocaustik/seat-hr)
 [![Build Status](https://img.shields.io/travis/cryocaustik/seat-hr/master.svg?style=flat-square)](https://travis-ci.org/cryocaustik/seat-hr)
 [![Quality Score](https://img.shields.io/scrutinizer/g/cryocaustik/seat-hr.svg?style=flat-square)](https://scrutinizer-ci.com/g/cryocaustik/seat-hr)
@@ -16,6 +19,10 @@ You can install the package via composer:
 ```bash
 composer require cryocaustik/seat-hr
 ```
+
+## Getting Started
+
+[Documentation on getting started and configuration of the application are available here](./docs/getting_started.md)
 
 
 ## Changelog
