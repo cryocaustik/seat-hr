@@ -18,10 +18,13 @@ this branch is compatible with SeAT version 5.x - use the master branch for SeAT
 
 ## Installation
 
+> [!WARNING]
+> For SeAT v5, it is important to call out the `v2.x-dev` branch, otherwise v1 (for SeAT v4) will be installed
+
 You can install the package via composer:
 
 ```bash
-composer require cryocaustik/seat-hr
+composer require cryocaustik/seat-hr:v2.x-dev
 ```
 
 ## Getting Started
@@ -55,7 +58,7 @@ register the package in `seat/composer.json` by adding the target version to the
     "require": {
         "psr-4": {
             ...
-            "cryocaustik/seat-hr": "^1.0.0"
+            "cryocaustik/seat-hr": "^2.x-dev"
         }
     }
 }
