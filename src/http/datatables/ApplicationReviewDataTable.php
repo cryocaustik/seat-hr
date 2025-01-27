@@ -26,8 +26,7 @@ class ApplicationReviewDataTable extends DataTable
                 return view('seat-hr::review.partials.status', ['status' => $status]);
             })
             ->editColumn('currentStatus.assigner.name', function ($row) {
-                return $row->currentStatus->assignerName;
-//                return $row->currentStatus->assigner ? $row->currentStatus->assigner->name : '';
+                return $row->currentStatus ? $row->currentStatus->assignerName : 'unknown';
             })
             ->addColumn('action', fn($row) => view('seat-hr::review.partials.application-actions', ['row' => $row])->render());
     }
