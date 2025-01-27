@@ -18,7 +18,7 @@ class CorporationQuestionController extends Controller
     {
         $available_questions = SeatHrQuestion::get(['id', 'name', 'type']);
         return $dataTable
-            ->render('seat-hr::configuration.corporation_questions.view', compact('available_questions'));
+            ->render('seat-hr::configuration.corporation_questions.view', ['available_questions' => $available_questions]);
     }
 
     public function add(Request $request)

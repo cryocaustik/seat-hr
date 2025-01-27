@@ -23,13 +23,13 @@ class ReviewController extends \Seat\Web\Http\Controllers\Controller
 
     public function summary(SeatHrCorporation $corporation)
     {
-        return view('seat-hr::review.summary', compact('corporation' ));
+        return view('seat-hr::review.summary', ['corporation' => $corporation]);
     }
 
     public function applications(SeatHrCorporation $corporation, ApplicationReviewDataTable $dataTable)
     {
         return $dataTable->with(['id' => $corporation->id])
-            ->render('seat-hr::review.applications', compact('corporation'));
+            ->render('seat-hr::review.applications', ['corporation' => $corporation]);
     }
 
     public function application_review(SeatHrCorporation $corporation, SeatHrApplication $application)

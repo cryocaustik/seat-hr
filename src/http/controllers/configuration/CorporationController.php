@@ -45,7 +45,7 @@ class CorporationController extends Controller
 
         $available_corps = CorporationInfo::get(['corporation_id', 'name']);
 
-        return view('seat-hr::configuration.corporation.create', compact('available_corps'));
+        return view('seat-hr::configuration.corporation.create', ['available_corps' => $available_corps]);
     }
 
     public function edit(Request $request, $id)
@@ -80,7 +80,7 @@ class CorporationController extends Controller
                 ->with('success', 'Corporation updated successfully.');
         }
 
-        return view('seat-hr::configuration.corporation.edit', compact('corporation'));
+        return view('seat-hr::configuration.corporation.edit', ['corporation' => $corporation]);
     }
 
     public function delete($id)

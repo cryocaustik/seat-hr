@@ -11,7 +11,7 @@
                 Add
             </a>
         </div>
-        <div class="card-text">
+        <div class="card-body">
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>

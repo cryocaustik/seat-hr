@@ -27,3 +27,8 @@ All notable changes to `seat-hr` will be documented in this file
 - fix #10 to allow question deletion
 - add warning to top level question deletion
 - new feature to allow application deletion
+
+## 2.0.0 - 2023-11-09
+
+- @zenobio93 updated for SeAT v5.x compatibility
+

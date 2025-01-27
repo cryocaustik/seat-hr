@@ -11,7 +11,7 @@ class Review
     {
     }
 
-    public function compose(View $view)
+    public function compose(View $view): void
     {
         $view->with('registered_corporations', SeatHrCorporation::all()->pluck('name', 'id'));
     }

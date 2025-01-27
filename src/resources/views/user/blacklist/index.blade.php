@@ -11,7 +11,7 @@
                 Add
             </a>
         </div>
-        <div class="card-text">
+        <div class="card-body">
             <table class="table">
                 <thead>
                     <tr>

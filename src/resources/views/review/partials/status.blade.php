@@ -1,1 +1,1 @@
-<div class="text-{{ $status->color }}">{{ ucfirst($status->name) }}</div>
+<div class="text-{{ $status ? $status->color : 'grey' }}">{{ $status ? ucfirst($status->name) : 'unknown' }}</div>

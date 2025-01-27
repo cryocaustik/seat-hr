@@ -11,9 +11,9 @@ class AllowQuestionDeletion extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::table('seat_hr_corporation_questions', function (Blueprint $table) {
+        Schema::table('seat_hr_corporation_questions', function (Blueprint $table): void {
             $table->dropForeign('seat_hr_corporation_questions_question_id_foreign');
             $table->foreign('question_id')
                 ->references('id')
@@ -21,7 +21,7 @@ class AllowQuestionDeletion extends Migration
                 ->onDelete('cascade');
         });
 
-        Schema::table('seat_hr_answers', function (Blueprint $table) {
+        Schema::table('seat_hr_answers', function (Blueprint $table): void {
             $table->dropForeign('seat_hr_answers_question_id_foreign');
             $table->foreign('question_id')
                 ->references('id')
@@ -35,9 +35,9 @@ class AllowQuestionDeletion extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::table('seat_hr_corporation_questions', function (Blueprint $table) {
+        Schema::table('seat_hr_corporation_questions', function (Blueprint $table): void {
             $table->dropForeign('seat_hr_corporation_questions_question_id_foreign');
             $table->foreign('question_id')
                 ->references('id')
@@ -45,7 +45,7 @@ class AllowQuestionDeletion extends Migration
                 ->onDelete('restrict');
         });
 
-        Schema::table('seat_hr_answers', function (Blueprint $table) {
+        Schema::table('seat_hr_answers', function (Blueprint $table): void {
             $table->dropForeign('seat_hr_answers_question_id_foreign');
             $table->foreign('question_id')
                 ->references('id')

@@ -21,20 +21,20 @@ class ApplicationController extends Controller
 
     public function view(CharacterInfo $character, SeatHrApplication $application)
     {
-        return view('seat-hr::user.applications.view', compact('application'));
+        return view('seat-hr::user.applications.view', ['application' => $application]);
     }
 
     public function apply(Request $request, CharacterInfo $character, SeatHrCorporation $corporation = null) {
         // POST, process submitted application
         if($request->isMethod('POST')) {
-            if(!$corporation) {
+            if(!$corporation instanceof \Cryocaustik\SeatHr\models\SeatHrCorporation) {
                 return redirect()->back()->withErrors('Invalid or missing corporation Id');
             }
 
             $available_questions = $corporation->questions()->active()->get();
             // because validator will literally reindex and overwrite your object keys if you use integers!!!
             $question_ids = array_map(
-                function($v) { return 'id-' . $v; },
+                fn($v): string => 'id-' . $v,
                 $available_questions->pluck('question_id')->toArray()
             );
 
@@ -69,12 +69,10 @@ class ApplicationController extends Controller
             ]);
 
             $answers = array_map(
-                function($v, $k) {
-                    return [
-                        'question_id' => trim($k, 'id-'),
-                        'response' => $v,
-                    ];
-                },
+                fn($v, $k): array => [
+                    'question_id' => trim((string) $k, 'id-'),
+                    'response' => $v,
+                ],
                 $data,
                 array_keys($data)
             );
@@ -85,14 +83,14 @@ class ApplicationController extends Controller
         }
 
         // no corporation specified, return list of recruiting corps
-        if(!$corporation) {
+        if(!$corporation instanceof \Cryocaustik\SeatHr\models\SeatHrCorporation) {
             $recruiting_corps = SeatHrCorporation::recruiting()->get();
-            return view('seat-hr::user.applications.apply', compact('recruiting_corps'));
+            return view('seat-hr::user.applications.apply', ['recruiting_corps' => $recruiting_corps]);
         }
 
         // corporation is specified, return active questions for target corp
         $corp_questions = $corporation->questions()->active()->get();
 
-        return view('seat-hr::user.applications.apply', compact('corporation', 'corp_questions'));
+        return view('seat-hr::user.applications.apply', ['corporation' => $corporation, 'corp_questions' => $corp_questions]);
     }
 }
