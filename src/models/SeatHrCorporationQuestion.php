@@ -30,6 +30,7 @@ class SeatHrCorporationQuestion extends Model
 
     public function scopeQuestions($query, $corporation_id)
     {
+        // TODO: deprecate this as it didn't work as expected; was replaced by scopeCorporationQuestions in model SeatHrQuestion
         return $query
             ->rightJoin(
                 'seat_hr_questions',
