@@ -1,11 +1,11 @@
 <div class="btn-group btn-group-sm float-right">
-    @if($row->id)
+    @if($row->corporation_question_active)
         <form
             action="{{ route('seat-hr.config.corporation-question.toggle') }}"
             method="post"
         >
             @csrf
-            <input type="hidden" name="id" value="{{ $row->id }}">
+            <input type="hidden" name="id" value="{{ $row->corporation_question_id }}">
             <button class="btn btn-sm btn-warning" type="submit"
                 data-toggle="tooltip" title="{{ trans('seat-hr::corporation_questions.toggle.tooltip') }}"
             >
@@ -21,13 +21,19 @@
               '\r\n\r\nAre you sure you want to proceed?');"
         >
             @csrf
-            <input type="hidden" name="id" value="{{ $row->id }}">
+            <input type="hidden" name="id" value="{{ $row->corporation_question_id }}">
             <button class="btn btn-sm btn-danger" type="submit"
                     data-toggle="tooltip" title="{{ trans('seat-hr::corporation_questions.delete.tooltip') }}"
             >
                 <i class="fas fa-trash"></i>
             </button>
         </form>
+    @elseif(!$row->active)
+        <button class="btn btn-sm btn-accent" type="" disabled
+            data-toggle="tooltip" title="{{ trans('seat-hr::corporation_questions.toggle.tooltip_inactive') }}"
+        >
+            <i class="fas fa-times-circle"></i>
+        </button>
     @else
         <form
             action="{{ route('seat-hr.config.corporation-question.add') }}"

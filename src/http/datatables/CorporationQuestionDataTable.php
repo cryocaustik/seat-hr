@@ -3,6 +3,7 @@
 namespace Cryocaustik\SeatHr\http\datatables;
 
 use Cryocaustik\SeatHr\models\SeatHrCorporationQuestion;
+use Cryocaustik\SeatHr\models\SeatHrQuestion;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
@@ -23,12 +24,16 @@ class CorporationQuestionDataTable extends DataTable
                 $bool = $row->active;
                 return view('seat-hr::configuration.corporation_questions.partials.bool', ['bool' => $bool]);
             })
-            ->editColumn('used', function ($row) {
-                $bool = !is_null($row->id);
+            ->editColumn('corporation_question_active', function ($row) {
+                // $bool = !is_null($row->id);
+                $bool = $row->corporation_question_active ?? false;
                 return view('seat-hr::configuration.corporation_questions.partials.bool', ['bool' => $bool]);
             })
-            ->editColumn('question_type', fn($row): string => ucwords((string) $row->question_type))
-            ->addColumn('action', fn($row) => view('seat-hr::configuration.corporation_questions.partials.actions', ['row' => $row]));
+            ->editColumn('type', fn($row): string => ucwords((string) $row->type))
+            ->addColumn('action', fn($row) => view('seat-hr::configuration.corporation_questions.partials.actions', ['row' => $row]))
+            ->addColumn('debug', function ($row) use ($query) {
+                return $query->toSql();
+            });
     }
 
     /**
@@ -55,9 +60,11 @@ class CorporationQuestionDataTable extends DataTable
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(SeatHrCorporationQuestion $model)
+    public function query(SeatHrQuestion $model)
     {
-        return $model->newQuery()->questions($this->request->id);
+        return $model->newQuery()->corporationQuestions($this->request->id);
+        // return $model->newQuery()->questions($this->request->id);
+        // return $model->newQuery()->where('corporation_id', $this->request->id)->with('question');
     }
 
     /**
@@ -68,17 +75,18 @@ class CorporationQuestionDataTable extends DataTable
     protected function getColumns(): array
     {
         return [
-            Column::make('question_id')->title('ID')->searchable(false)->hidden(),
-            Column::make('question_name')->title('Question')->name('seat_hr_questions.name'),
-            Column::make('question_type')->title('Data Type')->searchable(false),
+            Column::make('id')->title('ID')->searchable(false)->hidden(),
+            Column::make('name')->title('Question')->name('seat_hr_questions.name'),
+            Column::make('type')->title('Data Type')->searchable(false),
             Column::make('active')->title('Active?')->searchable(false),
-            Column::make('used')->title('Used?')->searchable(false),
+            Column::make('corporation_question_active')->title('Used?')->searchable(false),
             Column::computed('action')
                 ->searchable(false)
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center'),
+            Column::make('debug')->title('Debug')->searchable(false)->hidden(),
         ];
     }
 

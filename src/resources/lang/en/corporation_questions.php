@@ -8,6 +8,7 @@ return [
     ],
     'toggle' => [
         'tooltip' => 'Deactivate question',
+        'tooltip_inactive' => 'Inactive Question - enable in Question configuration to use.',
     ],
     'delete' => [
         'tooltip' => 'Delete question',
