@@ -32,3 +32,18 @@ All notable changes to `seat-hr` will be documented in this file
 
 - @zenobio93 updated for SeAT v5.x compatibility
 
+## 2.0.1 - 2025-01-27
+
+v2.0.1 fixes & v5 switch to master branch
+
+- #17 fix class names inconsistent with other partials
+- #18 fix error of deleting user causing application statuses by them to be deleted, creating errors in attempting to query currentStatus
+- move SeAT v5 to master branch given stable release
+
+## 2.0.2
+
+- #20 fix Invalid Corp Questions Configuration Options when 2+ Corporations are configured
+
+## 2.0.3 
+
+- #22 fix Error on add question to corporation

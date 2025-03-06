@@ -8,6 +8,7 @@ use Cryocaustik\SeatHr\models\SeatHrAnswer;
 use Cryocaustik\SeatHr\models\SeatHrCorporationQuestion;
 use Cryocaustik\SeatHr\models\SeatHrQuestion;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use \Seat\Web\Http\Controllers\Controller;
 
@@ -33,7 +34,9 @@ class CorporationQuestionController extends Controller
             'question_id' => [
                 'required',
                 'exists:seat_hr_questions,id',
-                'unique:seat_hr_corporation_questions',
+                Rule::unique('seat_hr_corporation_questions')->where(function ($query) use ($data) {
+                    return $query->where('corporation_id', $data['corporation_id']);
+                }),
             ],
         ];
 
