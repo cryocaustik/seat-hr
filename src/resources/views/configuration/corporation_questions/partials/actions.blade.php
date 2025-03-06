@@ -1,5 +1,5 @@
 <div class="btn-group btn-group-sm float-right">
-    @if($row->corporation_question_active)
+    @if($row->corporation_question_id)
         <form
             action="{{ route('seat-hr.config.corporation-question.toggle') }}"
             method="post"
@@ -41,7 +41,7 @@
         >
             @csrf
             <input type="hidden" name="corporation_id" value="{{ request()->id }}">
-            <input type="hidden" name="question_id" value="{{ $row->question_id }}">
+            <input type="hidden" name="question_id" value="{{ $row->id }}">
             <button class="btn btn-sm btn-primary" type="submit"
                 data-toggle="toggle" title="{{ trans('seat-hr::corporation_questions.add.tooltip') }}"
             >

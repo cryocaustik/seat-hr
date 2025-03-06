@@ -58,6 +58,7 @@ To configure global questions:
 
 [![global_questions](./images/global_questions_page.png)](./images/global_questions_page.png)
 
+!!! Disabling a question in Global Configuration will not automatically disable it for all corporations; it will simply prevent it from being added to any future corporations. To disable the question for a corporation, see  [#configuring-corporation-questions]
 
 ### Configure Global Question
 
@@ -100,6 +101,4 @@ Once on the corporation question configuration page, click on:
 
 
 [![configuring_corporation_question](./images/configuring_corporation_question.png)](./images/configuring_corporation_question.png)
-
-
 
